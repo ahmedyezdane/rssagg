@@ -1,0 +1,25 @@
+-- install sqlc:
+go install github.com/sqlc-dev/sqlc/cmd/sqlc@latest
+
+-- check sqlc is installed: 
+sqlc version
+
+-- install goose:
+go install github.com/pressly/goose/v3/cmd/goose@latest
+
+-- check goose is installed: 
+goose --version
+
+
+-- run postgres docker container
+docker run -d --name postgres-db -e POSTGRES_USER=appuser -e POSTGRES_PASSWORD=StrongP@ssw0rd -e POSTGRES_DB=appdb -p 5432:5432 postgres:latest
+
+-- migrating database
+cd sql/schema
+goose postgres {CONNECTION_STRING} up
+
+-- generate db codes using sqlc
+cd {root of project}
+sqlc generate
+
+-- 07:24:00
