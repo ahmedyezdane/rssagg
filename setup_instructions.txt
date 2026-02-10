@@ -22,4 +22,4 @@ goose postgres {CONNECTION_STRING} up
 cd {root of project}
 sqlc generate
 
--- 07:24:00
+-- 07:58:00
