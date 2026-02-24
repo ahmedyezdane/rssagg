@@ -1,5 +1,5 @@
 -- +goose Up
-Create Table feeds_followers(
+Create Table feeds_follows(
     id UUID primary key,
     created_at timestamp not null,
     updated_at timestamp not null,
@@ -9,4 +9,4 @@ Create Table feeds_followers(
 );
 
 -- +goose Down
-Drop Table feeds_followers;
+Drop Table feeds_follows;

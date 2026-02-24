@@ -12,13 +12,13 @@ import (
 	"github.com/google/uuid"
 )
 
-const createFeedFollower = `-- name: CreateFeedFollower :one
-Insert Into feeds_followers(id,created_at,updated_at,user_id,feed_id)
+const createFeedFollow = `-- name: CreateFeedFollow :one
+Insert Into feeds_follows(id,created_at,updated_at,user_id,feed_id)
 Values ($1, $2, $3, $4, $5)
 Returning id, created_at, updated_at, user_id, feed_id
 `
 
-type CreateFeedFollowerParams struct {
+type CreateFeedFollowParams struct {
 	ID        uuid.UUID
 	CreatedAt time.Time
 	UpdatedAt time.Time
@@ -26,15 +26,15 @@ type CreateFeedFollowerParams struct {
 	FeedID    uuid.UUID
 }
 
-func (q *Queries) CreateFeedFollower(ctx context.Context, arg CreateFeedFollowerParams) (FeedsFollower, error) {
-	row := q.db.QueryRowContext(ctx, createFeedFollower,
+func (q *Queries) CreateFeedFollow(ctx context.Context, arg CreateFeedFollowParams) (FeedsFollow, error) {
+	row := q.db.QueryRowContext(ctx, createFeedFollow,
 		arg.ID,
 		arg.CreatedAt,
 		arg.UpdatedAt,
 		arg.UserID,
 		arg.FeedID,
 	)
-	var i FeedsFollower
+	var i FeedsFollow
 	err := row.Scan(
 		&i.ID,
 		&i.CreatedAt,
