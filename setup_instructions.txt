@@ -21,5 +21,3 @@ goose postgres {CONNECTION_STRING} up
 -- generate db codes using sqlc
 cd {root of project}
 sqlc generate
-
--- 08:28:00
